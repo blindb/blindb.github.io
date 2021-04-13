@@ -16,7 +16,9 @@
 	</body>
 	<script src="jquery.min.js"></script>
 	<script src="leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-<!-- https://unpkg.com/leaflet@1.7.1/dist/leaflet.js -->
+<!-- https://unpkg.com/leaflet@1.7.1/dist/leaflet.js 
+https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
+-->
 	<script>
 
     mymap = NaN;
@@ -31,7 +33,7 @@
         //mymap.setView(mymarker.getLatLng(),mymap.getZoom());
     }
     function onLocationfound(e) {
-        //console.log(e);
+        console.log(e);
         mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
         mymap.setView(mymarker.getLatLng(),mymap.getZoom());
         var positionInfo = "Your current position is (" + "Latitude: " + e.coords.latitude + ", " + "Longitude: " + e.coords.longitude + ")";
