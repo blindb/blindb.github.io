@@ -36,13 +36,13 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
         console.log(e);
         mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
         mymap.setView(mymarker.getLatLng(),mymap.getZoom());
-        var positionInfo = "position (" + "Latitude: " + e.coords.latitude + ", " + "Longitude: " + e.coords.longitude + ")";
-        document.getElementById("result").innerHTML = positionInfo;
+ 
     }
     function gcp() {
         //console.log('pla');
         navigator.geolocation.getCurrentPosition(function(e) {
-
+            var positionInfo = "position (" + "Latitude: " + e.coords.latitude + ", " + "Longitude: " + e.coords.longitude + ")";
+            document.getElementById("result").innerHTML = positionInfo;
             mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
             mymap.setView(mymarker.getLatLng(),mymap.getZoom());
             setTimeout(function(){ gcp(), 1000});
