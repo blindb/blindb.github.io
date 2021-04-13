@@ -1,33 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
     <head><title>ohMy</title>
-		
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
- 
-
-		<style>
-			#mapid { height: 1180px; }
-		</style>
     </head>
     <body class="grid">
 
-		<div id="mapid" style="width: 1600px; height: 2000px;"></div>
-		<div id="result">
-			<!--Position information will be inserted here-->
-		</div>
-	<div class="module blue">
-		<dl>
-		<dt></dt>
-			<dd>
-			<ul>
-			<li></li>
-			</ul>
-			</dd>
-		
-		</dl>
-	</div>
+		<div id="mapid" style="width: 1600px; height: 1400px;"></div>
+		<div id="result"></div>
+        <div id="r2"></div>
 	</body>
 	<script src="jquery.min.js"></script>
 	<script src="leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -36,6 +18,10 @@
 
     mymap = NaN;
     mymarker= NaN;
+
+    function getResolution() {
+        document.getElementById("r2").innerHTML = "Your screen resolution is: " + screen.width + "x" + screen.height;
+    }
 
     function onMapClick(e) {
         mymarker.setLatLng(e.latlng);
@@ -50,6 +36,7 @@
     }
 			
 	$( document ).ready(function() {
+        getResolution();
         /*
 		pla = 59.38693709999999;
 		plo = 24.683256699999998;
