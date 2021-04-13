@@ -60,7 +60,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				pla = position.coords.latitude;
 				plo = position.coords.longitude;
 
-				mymap = L.map('mapid').setView([pla, plo], 13);
+				mymap = L.map('mapid').setView([pla, plo], 23);
                 mymap.on('click', onMapClick);
                 //mymap.on('locationfound', onLocationfound);
 /*
@@ -71,7 +71,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				var svgElementBounds = [ [ pla, plo ], [ 13, -100 ] ];
 				L.svgOverlay(svgElement, svgElementBounds).addTo(mymap);
 */
-				var imageUrl = 'images/map1.jpg',
+				var imageUrl = 'images/map1.png',
     			imageBounds = [[pla-0.03, plo-0.02], [pla+0.2, plo+0.2]];
 				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
 
