@@ -3,7 +3,7 @@
     <head><title>ohMy</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+		<link rel="stylesheet" href="leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
         <style>
             #mapid { height: 800px; }
         </style>
@@ -67,7 +67,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				var svgElementBounds = [ [ pla, plo ], [ 13, -100 ] ];
 				L.svgOverlay(svgElement, svgElementBounds).addTo(mymap);
 */
-				var imageUrl = 'map1.jpg',
+				var imageUrl = 'iamges/map1.jpg',
     			imageBounds = [[pla-0.03, plo-0.02], [pla+0.2, plo+0.2]];
 				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
 				
