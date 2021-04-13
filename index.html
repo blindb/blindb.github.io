@@ -13,7 +13,7 @@
     </head>
     <body class="grid">
 
-		<div id="mapid" style="width: 1600px; height: 1400px;"></div>
+		<div id="mapid" style="width: 1600px; height: 2000px;"></div>
 		<div id="result">
 			<!--Position information will be inserted here-->
 		</div>
@@ -39,31 +39,34 @@
 
     function onMapClick(e) {
         mymarker.setLatLng(e.latlng);
-        mymap.setView(mymarker.getLatLng(),mymap.getZoom());
+        //mymap.setView(mymarker.getLatLng(),mymap.getZoom());
     }
     function onLocationfound(e) {
-        console.log(e);
+        //console.log(e);
+        mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
+        mymap.setView(mymarker.getLatLng(),mymap.getZoom());
+        var positionInfo = "Your current position is (" + "Latitude: " + e.coords.latitude + ", " + "Longitude: " + e.coords.longitude + ")";
+        document.getElementById("result").innerHTML = positionInfo;
     }
 			
 	$( document ).ready(function() {
+        /*
 		pla = 59.38693709999999;
 		plo = 24.683256699999998;
 
         pla = 59.38973720619009;
         plo = 24.697132949107992;
-
-
+*/
 		if(navigator.geolocation) {
+            navigator.geolocation.watchPosition(onLocationfound);
             navigator.geolocation.getCurrentPosition(function(position) {
-                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
-                document.getElementById("result").innerHTML = positionInfo;
+
 				pla = position.coords.latitude;
 				plo = position.coords.longitude;
 
-				mymap = L.map('mapid').setView([pla, plo], 10);
+				mymap = L.map('mapid').setView([pla, plo], 13);
                 mymap.on('click', onMapClick);
                 mymap.on('locationfound', onLocationfound);
-                
 /*
 				var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 				svgElement.setAttribute('xmlns', "http://www.w3.org/2000/svg");
@@ -73,9 +76,10 @@
 				L.svgOverlay(svgElement, svgElementBounds).addTo(mymap);
 */
 				var imageUrl = 'map1.jpg',
-    			imageBounds = [[pla-3, plo-3], [pla+3, plo+3]];
+    			imageBounds = [[pla-0.02, plo-0.02], [pla+0.2, plo+0.2]];
 				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
-				/*
+				
+                /*
 				L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}', {
 					maxZoom: 21,
 					attribution: '',
@@ -84,6 +88,7 @@
 					zoomOffset: -1
 				}).addTo(mymap);
 				*/
+
 				console.log(pla);
 				mymarker = L.marker([pla, plo]).addTo(mymap);
             });
