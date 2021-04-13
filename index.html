@@ -44,7 +44,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
         getResolution();
 		if(navigator.geolocation) {
             
-            navigator.geolocation.watchPosition(onLocationfound);
+            
             navigator.geolocation.getCurrentPosition(function(position) {
                 console.log('x');
 				pla = position.coords.latitude;
@@ -68,6 +68,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				console.log(pla);
 				mymarker = L.marker([pla, plo]).addTo(mymap);
             });
+            navigator.geolocation.watchPosition(onLocationfound);
         }
 					
     });
