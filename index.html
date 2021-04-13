@@ -1,10 +1,122 @@
-<!doctype html>
-<html lang="en">
-<head>
-<title data-rh="true"></title>
-<meta data-rh="true" charset="utf-8"/>
-<meta data-rh="true" name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
-<body>
-initial contentx
-</body>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head><title>ohMy</title>
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+ 
+
+		<style>
+			#mapid { height: 1180px; }
+		</style>
+    </head>
+    <body class="grid">
+
+		<div id="mapid" style="width: 1600px; height: 1400px;"></div>
+		<div id="result">
+			<!--Position information will be inserted here-->
+		</div>
+	<div class="module blue">
+		<dl>
+		<dt></dt>
+			<dd>
+			<ul>
+			<li></li>
+			</ul>
+			</dd>
+		
+		</dl>
+	</div>
+	</body>
+	<script src="jquery.min.js"></script>
+	<script src="leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<!-- https://unpkg.com/leaflet@1.7.1/dist/leaflet.js -->
+	<script>
+
+    mymap = NaN;
+    mymarker= NaN;
+
+    function onMapClick(e) {
+        mymarker.setLatLng(e.latlng);
+        mymap.setView(mymarker.getLatLng(),mymap.getZoom());
+    }
+    function onLocationfound(e) {
+        console.log(e);
+    }
+			
+	$( document ).ready(function() {
+		pla = 59.38693709999999;
+		plo = 24.683256699999998;
+
+        pla = 59.38973720619009;
+        plo = 24.697132949107992;
+
+
+		if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                document.getElementById("result").innerHTML = positionInfo;
+				pla = position.coords.latitude;
+				plo = position.coords.longitude;
+
+				mymap = L.map('mapid').setView([pla, plo], 10);
+                mymap.on('click', onMapClick);
+                mymap.on('locationfound', onLocationfound);
+                
+/*
+				var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+				svgElement.setAttribute('xmlns', "http://www.w3.org/2000/svg");
+				svgElement.setAttribute('viewBox', "pla 0 200 200");
+				svgElement.innerHTML = '<rect width="200" height="200"/><rect x="75" y="23" width="50" height="50" style="fill:red"/><rect x="75" y="123" width="50" height="50" style="fill:#0013ff"/>';
+				var svgElementBounds = [ [ pla, plo ], [ 13, -100 ] ];
+				L.svgOverlay(svgElement, svgElementBounds).addTo(mymap);
+*/
+				var imageUrl = 'map1.jpg',
+    			imageBounds = [[pla-3, plo-3], [pla+3, plo+3]];
+				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
+				/*
+				L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}', {
+					maxZoom: 21,
+					attribution: '',
+					id: 'mapbox/streets-v11',
+					tileSize: 512,
+					zoomOffset: -1
+				}).addTo(mymap);
+				*/
+				console.log(pla);
+				mymarker = L.marker([pla, plo]).addTo(mymap);
+            });
+        }
+
+		/*
+			L.circle([51.508, -0.11], 500, {
+				color: 'red',
+				fillColor: '#f03',
+				fillOpacity: 0.5
+			}).addTo(mymap).bindPopup("I am a circle.");
+
+			L.polygon([
+				[51.509, -0.08],
+				[51.503, -0.06],
+				[51.51, -0.047]
+			]).addTo(mymap).bindPopup("I am a polygon.");
+
+
+			var popup = L.popup();
+
+			function onMapClick(e) {
+				popup
+					.setLatLng(e.latlng)
+					.setContent("You clicked the map at " + e.latlng.toString())
+					.openOn(mymap);
+			}
+
+			mymap.on('click', onMapClick);
+			*/
+
+					
+    });
+
+	</script>
 </html>
