@@ -22,7 +22,7 @@ function success(position) {
   status.textContent = '';
   mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
   mapLink.innerHTML += `Latitude: ${latitude} °, Longitude: ${longitude} ° <br>`;
-  setTimeout(function(){ getmyzzposition(), 20000});
+  setTimeout(getmyzzposition(), 20000);
   console.log('got new '+position.coords.latitude+' ,  '+position.coords.longitude);
 }
 
