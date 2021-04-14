@@ -25,7 +25,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
     mymarker= NaN;
 
     function getResolution() {
-        document.getElementById("r2").innerHTML = "resolution: " + screen.width + "x" + screen.height;
+        document.getElementById("r2").innerHTML = "R: " + screen.width + "x" + screen.height;
     }
 
     function onMapClick(e) {
@@ -44,8 +44,8 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
             var positionInfo = "position (" + "Latitude: " + e.coords.latitude + ", " + "Longitude: " + e.coords.longitude + ")";
             document.getElementById("result").innerHTML = positionInfo;
             mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
-            mymap.setView(mymarker.getLatLng(),mymap.getZoom());
-            setTimeout(function(){ gcp(), 1000});
+            //mymap.setView(mymarker.getLatLng(),mymap.getZoom());
+            setTimeout(new function(){ gcp();}, 1000);
         });
         
     }
@@ -60,7 +60,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				pla = position.coords.latitude;
 				plo = position.coords.longitude;
 
-				mymap = L.map('mapid').setView([pla, plo], 16);
+				mymap = L.map('mapid').setView([pla, plo], 21);
                 mymap.on('click', onMapClick);
                 //mymap.on('locationfound', onLocationfound);
 /*
@@ -71,8 +71,8 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				var svgElementBounds = [ [ pla, plo ], [ 13, -100 ] ];
 				L.svgOverlay(svgElement, svgElementBounds).addTo(mymap);
 */
-				var imageUrl = 'images/map1.png',
-    			imageBounds = [[pla-0.03, plo-0.02], [pla+0.2, plo+0.2]];
+				var imageUrl = 'images/squ.svg',
+    			imageBounds = [[pla-0.00001, plo-0.00001], [pla+0.00001, plo+0.00001]];
 				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
 
 				console.log(pla);
