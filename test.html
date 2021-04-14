@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-    <head><title></title>
+    <head><title>test</title>
     </head>
-    <body class="grid">
+    <body>
 <button id = "find-me">location</button><br/>
 <p id = "status"></p>
 <a id = "map-link" target="_blank"></a>
@@ -14,35 +14,35 @@ const mapLink = document.querySelector('#map-link');
 
 //mapLink.href = '';
 //mapLink.textContent = '';
-
+i = 0;
 function success(position) {
   const latitude  = position.coords.latitude;
   const longitude = position.coords.longitude;
 
   status.textContent = '';
   mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-  mapLink.innerHTML += `Latitude: ${latitude} °, Longitude: ${longitude} ° <br>`;
-  setTimeout(getmyzzposition(), 20000);
-  console.log('got new '+position.coords.latitude+' ,  '+position.coords.longitude);
+  mapLink.innerHTML += `Latitude: ${latitude}, Longitude: ${longitude} <br>`;
+  if(i<15) {window.setTimeout(new function(){
+      navigator.geolocation.getCurrentPosition(success, error);
+  }, 200); }
+  i++;
+  console.log(i +'got new '+position.coords.latitude+' ,  '+position.coords.longitude);
 }
 
 function error() {
   status.textContent = 'Unable to retrieve your location';
 }
 
-this.getmyzzposition = function() {
+function getmyzzposition() {
     navigator.geolocation.getCurrentPosition(success, error);
 }
 
 function geoFindMe() {
-
-
-
     if(!navigator.geolocation) {
         status.textContent = 'Geolocation is not supported by your browser';
     } else {
-        status.textContent = 'Locating…';
-        //navigator.geolocation.getCurrentPosition(success, error);
+        status.textContent = 'Locating...';
+        // navigator.geolocation.getCurrentPosition(success, error);
         getmyzzposition();
     }
 }
@@ -85,8 +85,8 @@ function geoFindMe() {
     }
 
 }
-
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
 */
+
 </script>
 </html>
