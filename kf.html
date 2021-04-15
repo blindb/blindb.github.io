@@ -42,6 +42,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
             var positionInfo = "position (" + "Latitude: " + e.coords.latitude + ", " + "Longitude: " + e.coords.longitude + "), zoom:" + mymap.getZoom();
             document.getElementById("result").innerHTML = positionInfo;
             mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
+            L.marker([pla, plo]).addTo(mymap);
     }
     
     function gcp() {
@@ -66,16 +67,17 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				pla = position.coords.latitude;
 				plo = position.coords.longitude;
 
-				mymap = L.map('mapid').setView([pla, plo], 42);
+				mymap = L.map('mapid').setView([pla, plo], 52);
                 //mymap.on('click', onMapClick);
                 //mymap.on('locationfound', onLocationfound);
 
-                var scale = 0.000000001;
+                var scale = 0.0000000000001;
+                //38693709999999
 				var imageUrl = 'images/spline.svg',
     			imageBounds = [[pla-scale, plo-scale], [pla+scale, plo+scale]];
 				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
 
-				//console.log(pla);
+				console.log(`${pla} ${plo}`);
 				mymarker = L.marker([pla, plo]).addTo(mymap);
                 gcp();
             });
