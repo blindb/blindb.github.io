@@ -66,23 +66,16 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				pla = position.coords.latitude;
 				plo = position.coords.longitude;
 
-				mymap = L.map('mapid').setView([pla, plo], 15);
+				mymap = L.map('mapid').setView([pla, plo], 19);
                 //mymap.on('click', onMapClick);
                 //mymap.on('locationfound', onLocationfound);
 
-				var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-				svgElement.setAttribute('xmlns', "http://www.w3.org/2000/svg");
-				svgElement.setAttribute('viewBox', "pla 0 200 200");
-				svgElement.innerHTML = '<rect width="200" height="200"/><rect x="75" y="23" width="50" height="50" style="fill:red"/><rect x="75" y="123" width="50" height="50" style="fill:#0013ff"/>';
-				var svgElementBounds = [ [ pla, plo ], [ -200, -200 ] ];
-				L.svgOverlay(svgElement, svgElementBounds).addTo(mymap);
-
-                var scale = 0.01;
+                var scale = 0.001;
 				var imageUrl = 'images/spline.svg',
     			imageBounds = [[pla-scale, plo-scale], [pla+scale, plo+scale]];
 				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
 
-				console.log(pla);
+				//console.log(pla);
 				mymarker = L.marker([pla, plo]).addTo(mymap);
                 gcp();
             });
