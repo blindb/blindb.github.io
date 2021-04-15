@@ -23,6 +23,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 
     mymap = NaN;
     mymarker= NaN;
+    i = 0;
 
     function getResolution() {
         document.getElementById("r2").innerHTML = "R: " + screen.width + "x" + screen.height;
@@ -43,6 +44,7 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
             document.getElementById("result").innerHTML = positionInfo;
             mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
             L.marker([pla, plo]).addTo(mymap);
+            console.log(`DOIT: ${e.coords.latitude} ${e.coords.longitude}`)
     }
     
     function gcp() {
@@ -53,7 +55,14 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
             //document.getElementById("result").innerHTML = positionInfo;
             //mymarker.setLatLng([e.coords.latitude, e.coords.longitude]);
             //mymap.setView(mymarker.getLatLng(),mymap.getZoom());
-            //setTimeout(new function(){ gcp();}, 1000);
+            if (i<3) {
+                setTimeout(new function(){ gcp();}, 1000);
+                i++;
+            } else {
+                gcp();
+                i = 0;
+            }
+            i++;
         });
         
     }
