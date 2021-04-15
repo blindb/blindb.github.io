@@ -66,11 +66,11 @@ https://unpkg.com/leaflet@1.7.1/dist/leaflet.css
 				pla = position.coords.latitude;
 				plo = position.coords.longitude;
 
-				mymap = L.map('mapid').setView([pla, plo], 19);
+				mymap = L.map('mapid').setView([pla, plo], 21);
                 //mymap.on('click', onMapClick);
                 //mymap.on('locationfound', onLocationfound);
 
-                var scale = 0.001;
+                var scale = 0.0001;
 				var imageUrl = 'images/spline.svg',
     			imageBounds = [[pla-scale, plo-scale], [pla+scale, plo+scale]];
 				L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
