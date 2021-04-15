@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Elini sünna 2021</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="k/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="k/cover.css" rel="stylesheet">
+
+    <style>
+      ol {
+        padding-top: 20px;
+      }
+      ol li {
+        font-size: 3rem;
+      }
+      p.lead {
+        padding-top: 20px;
+      }
+      div#vale {
+        position: absolute;
+        top: 100px;
+        padding: 145px;
+        background: crimson none repeat scroll 0% 0%;
+        display: none;
+        font-size: 2rem;
+      }
+      div#oige {
+        position: absolute;
+        top: 100px;
+        padding: 145px;
+        background: #14dc6b none repeat scroll 0% 0%;
+        display: none;
+        font-size: 2rem;
+      }
+    </style>
+</head>
+
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Küsimus</h1>
+        <p class="lead">
+          <h2>Kui vana oli Elin kaks aastat tagasi?</h2>
+        </p>
+        <ol class="options">
+          <li type="A" onclick="toggle_visibility();"> 8 </li>
+          <li type="A" onclick="toggle_visibility(1);" > 6 </li>
+          <li type="A" onclick="toggle_visibility();" > 7 </li>
+          <li type="A" onclick="toggle_visibility();" > 5 </li>
+        </ol>
+      </main>
+    </div>
+
+    <div id="vale">
+      Vale vastus! Proovi uuesti
+    </div>
+    <div id="oige">
+      Kus kaks suurt A tähte seisavad vastakuti, kükita ja vaata üles
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="k/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="k/popper.js"></script>
+    <script src="k/bootstrap.js"></script>
+
+    <script type="text/javascript">
+    function toggle_visibility(o = 0) {
+      var t = document.getElementById(['vale','oige'][o]);
+      if(!o) {$(t).show().delay(1000).fadeOut();} else {$(t).show()}
+    }
+    </script>
+
+</body>
+</html>
